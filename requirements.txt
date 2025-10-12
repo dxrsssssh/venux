@@ -1,4 +1,4 @@
-py-cord # Or the latest stable version
+py-cord[speed] # Or the latest stable version
 python-dotenv==1.0.1 # For local .env file
 motor==3.3.2 # Async MongoDB driver
 beanie==1.25.0 # Async ODM for MongoDB
