@@ -1,0 +1,5 @@
+py-cord==2.4.1 # Or the latest stable version
+python-dotenv==1.0.1 # For local .env file
+motor==3.3.2 # Async MongoDB driver
+beanie==1.25.0 # Async ODM for MongoDB
+aiohttp==3.9.5 # For the Render health check web server (if using free tier)
