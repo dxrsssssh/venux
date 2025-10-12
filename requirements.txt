@@ -1,5 +1,6 @@
-py-cord[speed] # Or the latest stable version
-python-dotenv==1.0.1 # For local .env file
-motor==3.3.2 # Async MongoDB driver
-beanie==1.25.0 # Async ODM for MongoDB
-aiohttp==3.9.5 # For the Render health check web server (if using free tier)
+py-cord[speed]
+python-dotenv==1.0.1
+motor==3.3.2
+beanie==1.25.0
+aiohttp==3.9.5
+msgspec==0.17.0 # Explicitly pin msgspec to this version
