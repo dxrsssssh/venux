@@ -19,7 +19,7 @@ DB_NAME = os.getenv('MONGO_DB_NAME', 'your_bot_db') # Default DB name
 # --- MongoDB Setup (will be initialized in on_ready) ---
 import motor.motor_asyncio
 from beanie import init_beanie
-from models import GuildConfig, UserProfile, Reminder # Import all your models here!
+from models import GuildConfig, UserProfile, Reminder, ModCase, CustomCommand # Import all your models here!
 
 # --- Intents Setup ---
 intents = discord.Intents.default()
@@ -46,8 +46,17 @@ bot = commands.Bot(command_prefix=get_prefix, intents=intents)
 @bot.event
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f"{PREFIX}help | /help"))
     
+    # --- Set Bot Status and Activity ---
+    # Activity: Streaming "Your Mom" with a placeholder URL (Discord requires a valid URL for streaming)
+    # Status: Do Not Disturb (dnd)
+    streaming_url = "https://www.twitch.tv/discord" # Placeholder, Discord requires a valid URL for streaming to show properly
+    await bot.change_presence(
+        activity=discord.Streaming(name="Your Mom", url=streaming_url),
+        status=discord.Status.dnd # Set status to Do Not Disturb
+    )
+    print("Bot status set to DND, streaming 'Your Mom'.")
+
     # Initialize MongoDB connection
     if MONGO_URI:
         client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URI)
@@ -55,6 +64,8 @@ async def on_ready():
             GuildConfig, 
             UserProfile, 
             Reminder,
+            ModCase,
+            CustomCommand,
             # Add all other Beanie Document models here!
         ])
         print(f"Connected to MongoDB database: {DB_NAME}")
