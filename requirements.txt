@@ -1,6 +1,6 @@
-py-cord                          # Let py-cord handle its own dependencies
+py-cord
 python-dotenv==1.0.1
 motor==3.3.2
-beanie==1.24.0                   # Pin Beanie to 1.24.0
-# aiohttp==3.9.5                 # Ensure this line is REMOVED
-msgspec==0.17.0                  # Pin msgspec to 0.17.0
+# beanie==1.24.0   <-- REMOVE THIS LINE
+# aiohttp==3.9.5   <-- REMOVE THIS LINE (if it was there)
+# msgspec==0.17.0  <-- REMOVE THIS LINE (it's a beanie dependency, so no longer needed)
