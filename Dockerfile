@@ -1,22 +1,22 @@
 # Dockerfile
-# Use a standard Python base image. Choose a version that matches your needs.
-# Alpine images are smaller, but debian-slim is also good and often has apt.
-# Dockerfile
-FROM python:3.10-bullseye # Changed from -slim-bullseye
+FROM python:3.10-bullseye
 
-# Install ffmpeg and any other system dependencies
-# Using 'apt-get' inside a Dockerfile's RUN command is perfectly fine.
-RUN apt-get update && apt-get install -y ffmpeg
+# No need for ffmpeg if not a music bot
+# RUN apt-get update && apt-get install -y ffmpeg
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
 
-# Copy your requirements file and install Python dependencies
+# Copy requirements and install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Remove debugging lines as well
+# RUN python -c "import audioop; print(f'audioop module found at: {audioop.__file__}')" || echo 'audioop module NOT found after pip install'
+# RUN python -c "import sys; print(sys.path)"
 
 # Copy the rest of your application code
 COPY . .
 
-# Define the command to run your bot when the container starts
+# Define the command to run your bot
 CMD ["python", "main.py"]
