@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from discord import app_commands
+from discord.commands import SlashCommandGroup, slash_command, ApplicationContext # Use the py-cord way
 import os
 import asyncio
 from aiohttp import web
