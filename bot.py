@@ -64,6 +64,27 @@ async def on_ready():
         # NO init_beanie CALL HERE
     else:
         print("MONGO_URI environment variable not set. Cannot connect to MongoDB.")
+
+      # Load Cogs
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+            try:
+                await bot.load_extension(f'cogs.{filename[:-3]}')
+                print(f"Loaded cog: {filename[:-3]}")
+            except Exception as e:
+                print(f"Failed to load cog {filename[:-3]}: {e}")
+
+    # Sync Slash Commands to Discord
+    # You can specify guild_ids=[YOUR_GUILD_ID] for faster syncing during testing
+    # For production, remove guild_ids to sync globally (takes up to an hour)
+    try:
+        # For testing, replace YOUR_GUILD_ID with the ID of your test server
+        # synced_commands = await bot.sync_commands(guild_ids=[YOUR_GUILD_ID]) 
+        synced_commands = await bot.sync_commands() # For global sync (takes time)
+        print(f"Synced {len(synced_commands)} slash commands.")
+    except Exception as e:
+        print(f"Failed to sync slash commands: {e}")
+
         
     print("Loading cogs...")
     for filename in os.listdir('./cogs'):
