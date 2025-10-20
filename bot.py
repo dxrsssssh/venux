@@ -69,8 +69,7 @@ async def on_ready():
     async def load_extensions():
         for filename in os.listdir("./commands"):
             if filename.endswith(".py"):
-               await
-    bot.load_extension(f"commands.{filename[:-3]}")
+               bot.load_extension(f"commands.{filename[:-3]}")
 
     async def main():
         await load_extensions()
