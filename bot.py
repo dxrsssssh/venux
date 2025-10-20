@@ -70,7 +70,7 @@ async def on_ready():
         for filename in os.listdir("./commands"):
             if filename.endswith(".py"):
                 await
-                bot.load_extension(f"commands.{filename[:-3]}")
+    bot.load_extension(f"commands.{filename[:-3]}")
 
    
     # Attach db to bot object for easy access in cogs
