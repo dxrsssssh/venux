@@ -72,6 +72,8 @@ async def on_ready():
                 await
     bot.load_extension(f"commands.{filename[:-3]}")
 
+    async def main():
+        await load_extensions()
    
     # Attach db to bot object for easy access in cogs
     bot.mongo_client = mongo_client
