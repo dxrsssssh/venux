@@ -1,5 +1,5 @@
 # Dockerfile
-FROM python:3.11 - slim
+FROM python:3.11-slim
 
 # No need for ffmpeg if not a music bot
 # RUN apt-get update && apt-get install -y ffmpeg
